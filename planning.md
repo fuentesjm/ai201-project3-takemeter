@@ -183,14 +183,15 @@ are too loose — I'll tighten §2/§3 *before* labeling more data, and re-run u
 the generated edge cases resolve unambiguously under the rules.
 
 ### 7b. Annotation assistance (disclosure-critical)
-**This already happened and must be disclosed:** all **204** comments in
-`labeling_batch.json` were **pre-labeled by an LLM (Claude Opus, via Claude
-Code)**, not hand-labeled from scratch. Plan going forward:
-- Treat these as a **first pass requiring human review**, not ground truth.
-- Add a `source` field (`ai_prelabel`) and a `reviewed` boolean to each row so
-  reviewed-by-human examples are distinguishable from raw AI labels.
-- The **human-verified subset** (§5/§6) becomes the gold test set; training labels
-  may stay AI-assisted but the evaluation set may not.
+**This happened and is disclosed:** all **217** comments in
+`takemeter_labeled.csv` were **pre-labeled by an LLM (Claude Opus, via Claude
+Code)**, not hand-labeled from scratch. The workflow:
+- AI assigned a first-pass label to every comment using the §2 definitions.
+- **Every label was then human-reviewed** by me; the dataset carries a
+  `reviewed` column (all `True`) marking this. On review I kept all AI labels as
+  assigned — I agreed with them after reading each comment.
+- Because all 217 are human-verified, the held-out test set (§5/§6) is drawn from
+  reviewed data, so the evaluation measures correctness, not agreement-with-AI.
 
 ### 7c. Failure analysis
 After evaluation, export the **list of misclassified test comments** (with true
@@ -207,9 +208,9 @@ write it into the evaluation. The AI proposes; I confirm against the raw text.
 
 - **Label design:** structure proposed by AI from reading real comments; final
   boundary rules decided by me.
-- **Annotation:** 204/204 comments AI pre-labeled (Claude Opus). **Not yet
-  human-reviewed** — a spot-check is the required next step before these are
-  trusted as ground truth.
+- **Annotation:** 217/217 comments AI pre-labeled (Claude Opus), then
+  **human-reviewed in full** (every label read and confirmed; all kept as
+  assigned). Tracked via the `reviewed` column in `takemeter_labeled.csv`.
 - **Pipeline code** (clean/filter/label scripts in `data/`, `collect.py`):
   AI-generated.
 - **Evaluation & failure analysis:** AI used as described in §7c, with all
