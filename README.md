@@ -1,9 +1,9 @@
 # ai201-project3-takemeter
 
 **Takemeter** classifies [r/soccer](https://www.reddit.com/r/soccer/) comments by
-*take quality*: `analysis` (a claim backed by a concrete, checkable reason) vs.
+: `analysis` (a claim backed by a concrete, checkable reason) vs.
 `hot_take` (a bare strong opinion). Full design rationale is in
-[planning.md](planning.md); this README is self-contained for grading.
+[planning.md](planning.md); 
 
 - **Dataset:** [takemeter_labeled.csv](takemeter_labeled.csv) — 217 human-reviewed comments.
 - **Model:** `distilbert-base-uncased`, fine-tuned on the 70% train split.
