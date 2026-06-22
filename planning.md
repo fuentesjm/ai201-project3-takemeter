@@ -211,7 +211,7 @@ write it into the evaluation. The AI proposes; I confirm against the raw text.
 - **Annotation:** 217/217 comments AI pre-labeled (Claude Opus), then
   **human-reviewed in full** (every label read and confirmed; all kept as
   assigned). Tracked via the `reviewed` column in `takemeter_labeled.csv`.
-- **Pipeline code** (clean/filter/label scripts in `data/`, `collect.py`):
+- **Pipeline code** (clean/filter/label scripts for the `data/` JSON dumps):
   AI-generated.
 - **Evaluation & failure analysis:** AI used as described in §7c, with all
   proposed patterns human-verified before reporting.
@@ -226,5 +226,5 @@ data/<match>.json           raw Reddit thread dump
   -> <match>_batch.json      substantive takes, labeled hot_take / analysis
 labeling_batch.json          master: all batches combined, tagged with `match`
 ```
-`collect.py` pulls fresh r/soccer comments via the no-auth Reddit JSON API for
-adding more threads.
+Raw thread dumps were collected from r/soccer's public match threads (no auth)
+and processed through the steps above.
